@@ -9,8 +9,8 @@ export type SaleorCart = {}
  */
 
 export type Cart = Core.Cart & {
-  lineItems: Core.LineItem[]
-  url?: string
+    lineItems: Core.LineItem[]
+    url?: string
 }
 
 export type CartTypes = Core.CartTypes

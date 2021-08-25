@@ -10,23 +10,23 @@ export { saleorProvider }
 export type { SaleorProvider }
 
 export const saleorConfig: CommerceConfig = {
-  locale: 'en-us',
-  cartCookie: Const.CHECKOUT_ID_COOKIE,
+    locale: 'en-us',
+    cartCookie: Const.CHECKOUT_ID_COOKIE,
 }
 
 export type SaleorConfig = Partial<CommerceConfig>
 
 export type SaleorProps = {
-  children?: ReactNode
-  locale: string
+    children?: ReactNode
+    locale: string
 } & SaleorConfig
 
 export function CommerceProvider({ children, ...config }: SaleorProps) {
-  return (
-    <CoreCommerceProvider provider={saleorProvider} config={{ ...saleorConfig, ...config }}>
-      {children}
-    </CoreCommerceProvider>
-  )
+    return (
+        <CoreCommerceProvider provider={saleorProvider} config={{ ...saleorConfig, ...config }}>
+            {children}
+        </CoreCommerceProvider>
+    )
 }
 
 export const useCommerce = () => useCoreCommerce()

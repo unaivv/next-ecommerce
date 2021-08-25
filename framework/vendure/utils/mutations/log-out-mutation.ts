@@ -1,7 +1,7 @@
 export const logoutMutation = /* GraphQL */ `
-  mutation logout {
-    logout {
-      success
+    mutation logout {
+        logout {
+            success
+        }
     }
-  }
 `

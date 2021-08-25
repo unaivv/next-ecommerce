@@ -1,21 +1,21 @@
 export const getCollectionsQuery = /* GraphQL */ `
-  query getCollections {
-    collections {
-      items {
-        id
-        name
-        description
-        slug
-        productVariants {
-          totalItems
+    query getCollections {
+        collections {
+            items {
+                id
+                name
+                description
+                slug
+                productVariants {
+                    totalItems
+                }
+                parent {
+                    id
+                }
+                children {
+                    id
+                }
+            }
         }
-        parent {
-          id
-        }
-        children {
-          id
-        }
-      }
     }
-  }
 `

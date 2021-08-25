@@ -27,19 +27,19 @@ These modifications are temporarily until contributions are made to remove them.
 ```js
 // components/product/ProductView/ProductView.tsx
 const ProductView: FC<Props> = ({ product }) => {
-  const addToCart = async () => {
-    setLoading(true)
-    try {
-      await addItem({
-        productId: product.id,
-        variantId: variant ? variant.id : product.variants[0].id,
-      })
-      openSidebar()
-      setLoading(false)
-    } catch (err) {
-      setLoading(false)
+    const addToCart = async () => {
+        setLoading(true)
+        try {
+            await addItem({
+                productId: product.id,
+                variantId: variant ? variant.id : product.variants[0].id,
+            })
+            openSidebar()
+            setLoading(false)
+        } catch (err) {
+            setLoading(false)
+        }
     }
-  }
 }
 ```
 
@@ -50,12 +50,12 @@ const ProductView: FC<Props> = ({ product }) => {
 import { useCommerce } from '@framework'
 
 const CartSidebarView: FC = () => {
-  const { checkout } = useCommerce()
-  return (
-    <Button href={checkout.webUrl} Component="a" width="100%">
-      Proceed to Checkout
-    </Button>
-  )
+    const { checkout } = useCommerce()
+    return (
+        <Button href={checkout.webUrl} Component="a" width="100%">
+            Proceed to Checkout
+        </Button>
+    )
 }
 ```
 
@@ -76,8 +76,8 @@ import { getConfig } from '@framework/api'
 const config = getConfig()
 
 const product = await getProduct({
-  variables: { slug },
-  config,
+    variables: { slug },
+    config,
 })
 ```
 
@@ -90,8 +90,8 @@ import { getConfig } from '@framework/api'
 const config = getConfig()
 
 const { products } = await getAllProducts({
-  variables: { first: 12 },
-  config,
+    variables: { first: 12 },
+    config,
 })
 ```
 
@@ -104,7 +104,7 @@ import { getConfig } from '@framework/api'
 const config = getConfig()
 
 const collections = await getAllCollections({
-  config,
+    config,
 })
 ```
 
@@ -117,8 +117,8 @@ import { getConfig } from '@framework/api'
 const config = getConfig()
 
 const pages = await getAllPages({
-  variables: { first: 12 },
-  config,
+    variables: { first: 12 },
+    config,
 })
 ```
 

@@ -7,40 +7,40 @@ import { Product } from '../schema'
 const defaultOpts = {}
 
 export type Wishlist = {
-  items: [
-    {
-      product_id: number
-      variant_id: number
-      id: number
-      product: Product
-    }
-  ]
+    items: [
+        {
+            product_id: number
+            variant_id: number
+            id: number
+            product: Product
+        }
+    ]
 }
 
 export interface UseWishlistOptions {
-  includeProducts?: boolean
+    includeProducts?: boolean
 }
 
 export interface UseWishlistInput extends UseWishlistOptions {
-  customerId?: number
+    customerId?: number
 }
 
 export const fetcher: HookFetcher<Wishlist | null, UseWishlistInput> = () => {
-  return null
+    return null
 }
 
 export function extendHook(
-  customFetcher: typeof fetcher,
-  // swrOptions?: SwrOptions<Wishlist | null, UseWishlistInput>
-  swrOptions?: any
+    customFetcher: typeof fetcher,
+    // swrOptions?: SwrOptions<Wishlist | null, UseWishlistInput>
+    swrOptions?: any
 ) {
-  const useWishlist = ({ includeProducts }: UseWishlistOptions = {}) => {
-    return { data: null }
-  }
+    const useWishlist = ({ includeProducts }: UseWishlistOptions = {}) => {
+        return { data: null }
+    }
 
-  useWishlist.extend = extendHook
+    useWishlist.extend = extendHook
 
-  return useWishlist
+    return useWishlist
 }
 
 export default extendHook(fetcher)

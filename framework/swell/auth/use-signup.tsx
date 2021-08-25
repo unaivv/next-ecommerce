@@ -9,51 +9,53 @@ import handleLogin from '../utils/handle-login'
 export default useSignup as UseSignup<typeof handler>
 
 export const handler: MutationHook<SignupHook> = {
-  fetchOptions: {
-    query: 'account',
-    method: 'create',
-  },
-  async fetcher({
-    input: { firstName, lastName, email, password },
-    options,
-    fetch,
-  }) {
-    if (!(firstName && lastName && email && password)) {
-      throw new CommerceError({
-        message:
-          'A first name, last name, email and password are required to signup',
-      })
-    }
-    const data = await fetch({
-      ...options,
-      variables: {
-        first_name: firstName,
-        last_name: lastName,
-        email,
-        password,
-      },
-    })
-
-    try {
-      const loginData = await fetch({
+    fetchOptions: {
         query: 'account',
-        method: 'login',
-        variables: [email, password],
-      })
-      handleLogin(loginData)
-    } catch (error) {}
-    return data
-  },
-  useHook: ({ fetch }) => () => {
-    const { revalidate } = useCustomer()
+        method: 'create',
+    },
+    async fetcher({
+        input: { firstName, lastName, email, password },
+        options,
+        fetch,
+    }) {
+        if (!(firstName && lastName && email && password)) {
+            throw new CommerceError({
+                message:
+                    'A first name, last name, email and password are required to signup',
+            })
+        }
+        const data = await fetch({
+            ...options,
+            variables: {
+                first_name: firstName,
+                last_name: lastName,
+                email,
+                password,
+            },
+        })
 
-    return useCallback(
-      async function signup(input) {
-        const data = await fetch({ input })
-        await revalidate()
+        try {
+            const loginData = await fetch({
+                query: 'account',
+                method: 'login',
+                variables: [email, password],
+            })
+            handleLogin(loginData)
+        } catch (error) {}
         return data
-      },
-      [fetch, revalidate]
-    )
-  },
+    },
+    useHook:
+        ({ fetch }) =>
+        () => {
+            const { revalidate } = useCustomer()
+
+            return useCallback(
+                async function signup(input) {
+                    const data = await fetch({ input })
+                    await revalidate()
+                    return data
+                },
+                [fetch, revalidate]
+            )
+        },
 }

@@ -11,11 +11,11 @@ import { handler as useSignup } from './auth/use-signup'
 import { fetcher } from './fetcher'
 
 export const vendureProvider: Provider = {
-  locale: 'en-us',
-  cartCookie: 'session',
-  fetcher,
-  cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },
-  customer: { useCustomer },
-  products: { useSearch },
-  auth: { useLogin, useLogout, useSignup },
+    locale: 'en-us',
+    cartCookie: 'session',
+    fetcher,
+    cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },
+    customer: { useCustomer },
+    products: { useSearch },
+    auth: { useLogin, useLogout, useSignup },
 }

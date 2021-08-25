@@ -13,14 +13,14 @@ import { handler as useSignup } from './auth/use-signup'
 import fetcher from './fetcher'
 
 export const saleorProvider = {
-  locale: 'en-us',
-  cartCookie: '',
-  cartCookieToken: '',
-  fetcher,
-  cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },
-  customer: { useCustomer },
-  products: { useSearch },
-  auth: { useLogin, useLogout, useSignup },
+    locale: 'en-us',
+    cartCookie: '',
+    cartCookieToken: '',
+    fetcher,
+    cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },
+    customer: { useCustomer },
+    products: { useSearch },
+    auth: { useLogin, useLogout, useSignup },
 }
 
 export type SaleorProvider = typeof saleorProvider

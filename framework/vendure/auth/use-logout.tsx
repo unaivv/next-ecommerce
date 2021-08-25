@@ -9,27 +9,27 @@ import { LogoutHook } from '../types/logout'
 export default useLogout as UseLogout<typeof handler>
 
 export const handler: MutationHook<LogoutHook> = {
-  fetchOptions: {
-    query: logoutMutation,
-  },
-  async fetcher({ options, fetch }) {
-    await fetch<LogoutMutation>({
-      ...options,
-    })
-    return null
-  },
-  useHook:
-    ({ fetch }) =>
-    () => {
-      const { mutate } = useCustomer()
-
-      return useCallback(
-        async function logout() {
-          const data = await fetch()
-          await mutate(null, false)
-          return data
-        },
-        [fetch, mutate]
-      )
+    fetchOptions: {
+        query: logoutMutation,
     },
+    async fetcher({ options, fetch }) {
+        await fetch<LogoutMutation>({
+            ...options,
+        })
+        return null
+    },
+    useHook:
+        ({ fetch }) =>
+        () => {
+            const { mutate } = useCustomer()
+
+            return useCallback(
+                async function logout() {
+                    const data = await fetch()
+                    await mutate(null, false)
+                    return data
+                },
+                [fetch, mutate]
+            )
+        },
 }

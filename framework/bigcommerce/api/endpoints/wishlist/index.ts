@@ -11,14 +11,14 @@ export type WishlistAPI = GetAPISchema<BigcommerceAPI, WishlistSchema>
 export type WishlistEndpoint = WishlistAPI['endpoint']
 
 export const handlers: WishlistEndpoint['handlers'] = {
-  getWishlist,
-  addItem,
-  removeItem,
+    getWishlist,
+    addItem,
+    removeItem,
 }
 
 const wishlistApi = createEndpoint<WishlistAPI>({
-  handler: wishlistEndpoint,
-  handlers,
+    handler: wishlistEndpoint,
+    handlers,
 })
 
 export default wishlistApi

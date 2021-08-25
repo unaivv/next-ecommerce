@@ -5,31 +5,31 @@ import * as mutation from './mutations'
 import throwUserErrors from './throw-user-errors'
 
 const handleLogin = (data: CreateToken) => {
-  throwUserErrors(data?.errors)
+    throwUserErrors(data?.errors)
 
-  const token = data?.token
+    const token = data?.token
 
-  if (token) {
-    setToken(token)
-    setCSRFToken(token)
-  }
+    if (token) {
+        setToken(token)
+        setCSRFToken(token)
+    }
 
-  return token
+    return token
 }
 
 export const handleAutomaticLogin = async (
-  fetch: <T = any, B = Body>(options: FetcherOptions<B>) => Promise<T>,
-  input: MutationTokenCreateArgs
+    fetch: <T = any, B = Body>(options: FetcherOptions<B>) => Promise<T>,
+    input: MutationTokenCreateArgs
 ) => {
-  try {
-    const { tokenCreate } = await fetch<Mutation, MutationTokenCreateArgs>({
-      query: mutation.SessionCreate,
-      variables: { ...input },
-    })
-    handleLogin(tokenCreate!)
-  } catch (error) {
-    //
-  }
+    try {
+        const { tokenCreate } = await fetch<Mutation, MutationTokenCreateArgs>({
+            query: mutation.SessionCreate,
+            variables: { ...input },
+        })
+        handleLogin(tokenCreate!)
+    } catch (error) {
+        //
+    }
 }
 
 export default handleLogin

@@ -11,15 +11,15 @@ import * as Site from './site'
 import * as Wishlist from './wishlist'
 
 export type {
-  Cart,
-  Checkout,
-  Common,
-  Customer,
-  Login,
-  Logout,
-  Page,
-  Product,
-  Signup,
-  Site,
-  Wishlist,
+    Cart,
+    Checkout,
+    Common,
+    Customer,
+    Login,
+    Logout,
+    Page,
+    Product,
+    Signup,
+    Site,
+    Wishlist,
 }

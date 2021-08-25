@@ -9,33 +9,33 @@ import { LogoutHook } from '@commerce/types/logout'
 export default useLogout as UseLogout<typeof handler>
 
 export const handler: MutationHook<LogoutHook> = {
-  fetchOptions: {
-    query: mutation.SessionDestroy,
-  },
-  async fetcher({ options, fetch }) {
-    await fetch({
-      ...options,
-      variables: {},
-    })
-
-    setToken()
-    setCSRFToken()
-    setCheckoutToken()
-
-    return null
-  },
-  useHook:
-    ({ fetch }) =>
-    () => {
-      const { mutate } = useCustomer()
-
-      return useCallback(
-        async function logout() {
-          const data = await fetch()
-          await mutate(null, false)
-          return data
-        },
-        [fetch, mutate]
-      )
+    fetchOptions: {
+        query: mutation.SessionDestroy,
     },
+    async fetcher({ options, fetch }) {
+        await fetch({
+            ...options,
+            variables: {},
+        })
+
+        setToken()
+        setCSRFToken()
+        setCheckoutToken()
+
+        return null
+    },
+    useHook:
+        ({ fetch }) =>
+        () => {
+            const { mutate } = useCustomer()
+
+            return useCallback(
+                async function logout() {
+                    const data = await fetch()
+                    await mutate(null, false)
+                    return data
+                },
+                [fetch, mutate]
+            )
+        },
 }

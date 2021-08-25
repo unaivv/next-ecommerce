@@ -5,19 +5,20 @@ import type { ProductEdge } from '../api/operations/get-all-products'
 export * from '@commerce/types/wishlist'
 
 export type WishlistItem = NonNullable<
-  definitions['wishlist_Full']['items']
+    definitions['wishlist_Full']['items']
 >[0] & {
-  product?: ProductEdge['node']
+    product?: ProductEdge['node']
 }
 
 export type Wishlist = Omit<definitions['wishlist_Full'], 'items'> & {
-  items?: WishlistItem[]
+    items?: WishlistItem[]
 }
 
 export type WishlistTypes = {
-  wishlist: Wishlist
-  itemBody: Core.WishlistItemBody
+    wishlist: Wishlist
+    itemBody: Core.WishlistItemBody
 }
 
 export type WishlistSchema = Core.WishlistSchema<WishlistTypes>
-export type GetCustomerWishlistOperation = Core.GetCustomerWishlistOperation<WishlistTypes>
+export type GetCustomerWishlistOperation =
+    Core.GetCustomerWishlistOperation<WishlistTypes>

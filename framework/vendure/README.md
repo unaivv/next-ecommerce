@@ -6,11 +6,11 @@ UI hooks and data fetching methods built from the ground up for e-commerce appli
 
 1. Clone this repo and install its dependencies with `yarn install` or `npm install`
 2. Set the Vendure provider and API URL in your `.env.local` file:
-   ```
-   COMMERCE_PROVIDER=vendure
-   NEXT_PUBLIC_VENDURE_SHOP_API_URL=https://demo.vendure.io/shop-api
-   NEXT_PUBLIC_VENDURE_LOCAL_URL=/vendure-shop-api
-   ```
+    ```
+    COMMERCE_PROVIDER=vendure
+    NEXT_PUBLIC_VENDURE_SHOP_API_URL=https://demo.vendure.io/shop-api
+    NEXT_PUBLIC_VENDURE_LOCAL_URL=/vendure-shop-api
+    ```
 3. With the Vendure server running, start this project using `yarn dev` or `npm run dev`.
 
 **Note:** The Vendure server needs to be configured to use the "cookie" tokenMethod rather than "bearer" to work with this provider. For more information see the [Managing Sessions docs](https://www.vendure.io/docs/storefront/managing-sessions/).

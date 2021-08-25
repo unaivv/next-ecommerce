@@ -1,10 +1,10 @@
 export type CheckoutSchema = {
-  endpoint: {
-    options: {}
-    handlers: {
-      checkout: {
-        data: null
-      }
+    endpoint: {
+        options: {}
+        handlers: {
+            checkout: {
+                data: null
+            }
+        }
     }
-  }
 }

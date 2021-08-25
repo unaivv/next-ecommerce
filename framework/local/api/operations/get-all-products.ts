@@ -5,21 +5,21 @@ import type { LocalConfig, Provider } from '../index'
 import data from '../../data.json'
 
 export default function getAllProductsOperation({
-  commerce,
+    commerce,
 }: OperationContext<any>) {
-  async function getAllProducts<T extends GetAllProductsOperation>({
-    query = '',
-    variables,
-    config,
-  }: {
-    query?: string
-    variables?: T['variables']
-    config?: Partial<LocalConfig>
-    preview?: boolean
-  } = {}): Promise<{ products: Product[] | any[] }> {
-    return {
-      products: data.products,
+    async function getAllProducts<T extends GetAllProductsOperation>({
+        query = '',
+        variables,
+        config,
+    }: {
+        query?: string
+        variables?: T['variables']
+        config?: Partial<LocalConfig>
+        preview?: boolean
+    } = {}): Promise<{ products: Product[] | any[] }> {
+        return {
+            products: data.products,
+        }
     }
-  }
-  return getAllProducts
+    return getAllProducts
 }

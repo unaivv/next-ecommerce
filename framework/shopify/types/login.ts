@@ -4,5 +4,5 @@ import type { CustomerAccessTokenCreateInput } from '../schema'
 export * from '@commerce/types/login'
 
 export type LoginOperation = Core.LoginOperation & {
-  variables: CustomerAccessTokenCreateInput
+    variables: CustomerAccessTokenCreateInput
 }

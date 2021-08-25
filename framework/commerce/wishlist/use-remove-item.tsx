@@ -5,7 +5,7 @@ import type { RemoveItemHook } from '../types/wishlist'
 import type { Provider } from '..'
 
 export type UseRemoveItem<
-  H extends MutationHook<RemoveItemHook<any>> = MutationHook<RemoveItemHook>
+    H extends MutationHook<RemoveItemHook<any>> = MutationHook<RemoveItemHook>
 > = ReturnType<H['useHook']>
 
 export const fetcher: HookFetcherFn<RemoveItemHook> = mutationFetcher
@@ -13,8 +13,8 @@ export const fetcher: HookFetcherFn<RemoveItemHook> = mutationFetcher
 const fn = (provider: Provider) => provider.wishlist?.useRemoveItem!
 
 const useRemoveItem: UseRemoveItem = (...args) => {
-  const hook = useHook(fn)
-  return useMutationHook({ fetcher, ...hook })(...args)
+    const hook = useHook(fn)
+    return useMutationHook({ fetcher, ...hook })(...args)
 }
 
 export default useRemoveItem

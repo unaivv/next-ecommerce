@@ -11,8 +11,8 @@ export type CheckoutEndpoint = CheckoutAPI['endpoint']
 export const handlers: CheckoutEndpoint['handlers'] = { checkout }
 
 const checkoutApi = createEndpoint<CheckoutAPI>({
-  handler: checkoutEndpoint,
-  handlers,
+    handler: checkoutEndpoint,
+    handlers,
 })
 
 export default checkoutApi

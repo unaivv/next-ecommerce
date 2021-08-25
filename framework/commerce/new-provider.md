@@ -2,42 +2,42 @@
 
 A commerce provider is a headless e-commerce platform that integrates with the [Commerce Framework](./README.md). Right now we have the following providers:
 
-- BigCommerce ([framework/bigcommerce](../bigcommerce))
-- Saleor ([framework/saleor](../saleor))
-- Shopify ([framework/shopify](../shopify))
+-   BigCommerce ([framework/bigcommerce](../bigcommerce))
+-   Saleor ([framework/saleor](../saleor))
+-   Shopify ([framework/shopify](../shopify))
 
 Adding a commerce provider means adding a new folder in `framework` with a folder structure like the next one:
 
-- `api`
-  - index.ts
-- `product`
-  - usePrice
-  - useSearch
-  - getProduct
-  - getAllProducts
-- `wishlist`
-  - useWishlist
-  - useAddItem
-  - useRemoveItem
-- `auth`
-  - useLogin
-  - useLogout
-  - useSignup
-- `customer`
-  - useCustomer
-  - getCustomerId
-  - getCustomerWistlist
-- `cart`
-  - useCart
-  - useAddItem
-  - useRemoveItem
-  - useUpdateItem
-- `env.template`
-- `index.ts`
-- `provider.ts`
-- `commerce.config.json`
-- `next.config.js`
-- `README.md`
+-   `api`
+    -   index.ts
+-   `product`
+    -   usePrice
+    -   useSearch
+    -   getProduct
+    -   getAllProducts
+-   `wishlist`
+    -   useWishlist
+    -   useAddItem
+    -   useRemoveItem
+-   `auth`
+    -   useLogin
+    -   useLogout
+    -   useSignup
+-   `customer`
+    -   useCustomer
+    -   getCustomerId
+    -   getCustomerWistlist
+-   `cart`
+    -   useCart
+    -   useAddItem
+    -   useRemoveItem
+    -   useUpdateItem
+-   `env.template`
+-   `index.ts`
+-   `provider.ts`
+-   `commerce.config.json`
+-   `next.config.js`
+-   `README.md`
 
 `provider.ts` exports a provider object with handlers for the [Commerce Hooks](./README.md#commerce-hooks) and `api/index.ts` exports a Node.js provider for the [Commerce API](./README.md#commerce-api)
 
@@ -54,9 +54,9 @@ Using BigCommerce as an example. The first thing to do is export a `CommerceProv
 ```tsx
 import type { ReactNode } from 'react'
 import {
-  CommerceConfig,
-  CommerceProvider as CoreCommerceProvider,
-  useCommerce as useCoreCommerce,
+    CommerceConfig,
+    CommerceProvider as CoreCommerceProvider,
+    useCommerce as useCoreCommerce,
 } from '@commerce'
 import { bigcommerceProvider } from './provider'
 import type { BigcommerceProvider } from './provider'
@@ -65,26 +65,26 @@ export { bigcommerceProvider }
 export type { BigcommerceProvider }
 
 export const bigcommerceConfig: CommerceConfig = {
-  locale: 'en-us',
-  cartCookie: 'bc_cartId',
+    locale: 'en-us',
+    cartCookie: 'bc_cartId',
 }
 
 export type BigcommerceConfig = Partial<CommerceConfig>
 
 export type BigcommerceProps = {
-  children?: ReactNode
-  locale: string
+    children?: ReactNode
+    locale: string
 } & BigcommerceConfig
 
 export function CommerceProvider({ children, ...config }: BigcommerceProps) {
-  return (
-    <CoreCommerceProvider
-      provider={bigcommerceProvider}
-      config={{ ...bigcommerceConfig, ...config }}
-    >
-      {children}
-    </CoreCommerceProvider>
-  )
+    return (
+        <CoreCommerceProvider
+            provider={bigcommerceProvider}
+            config={{ ...bigcommerceConfig, ...config }}
+        >
+            {children}
+        </CoreCommerceProvider>
+    )
 }
 
 export const useCommerce = () => useCoreCommerce<BigcommerceProvider>()
@@ -114,18 +114,18 @@ import { handler as useSignup } from './auth/use-signup'
 import fetcher from './fetcher'
 
 export const bigcommerceProvider = {
-  locale: 'en-us',
-  cartCookie: 'bc_cartId',
-  fetcher,
-  cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },
-  wishlist: {
-    useWishlist,
-    useAddItem: useWishlistAddItem,
-    useRemoveItem: useWishlistRemoveItem,
-  },
-  customer: { useCustomer },
-  products: { useSearch },
-  auth: { useLogin, useLogout, useSignup },
+    locale: 'en-us',
+    cartCookie: 'bc_cartId',
+    fetcher,
+    cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },
+    wishlist: {
+        useWishlist,
+        useAddItem: useWishlistAddItem,
+        useRemoveItem: useWishlistRemoveItem,
+    },
+    customer: { useCustomer },
+    products: { useSearch },
+    auth: { useLogin, useLogout, useSignup },
 }
 
 export type BigcommerceProvider = typeof bigcommerceProvider
@@ -145,39 +145,41 @@ import type { Cart } from '../types'
 export default useCart as UseCart<typeof handler>
 
 export const handler: SWRHook<
-  Cart | null,
-  {},
-  FetchCartInput,
-  { isEmpty?: boolean }
+    Cart | null,
+    {},
+    FetchCartInput,
+    { isEmpty?: boolean }
 > = {
-  fetchOptions: {
-    url: '/api/cart',
-    method: 'GET',
-  },
-  async fetcher({ input: { cartId }, options, fetch }) {
-    const data = cartId ? await fetch(options) : null
-    return data && normalizeCart(data)
-  },
-  useHook:
-    ({ useData }) =>
-    (input) => {
-      const response = useData({
-        swrOptions: { revalidateOnFocus: false, ...input?.swrOptions },
-      })
-
-      return useMemo(
-        () =>
-          Object.create(response, {
-            isEmpty: {
-              get() {
-                return (response.data?.lineItems.length ?? 0) <= 0
-              },
-              enumerable: true,
-            },
-          }),
-        [response]
-      )
+    fetchOptions: {
+        url: '/api/cart',
+        method: 'GET',
     },
+    async fetcher({ input: { cartId }, options, fetch }) {
+        const data = cartId ? await fetch(options) : null
+        return data && normalizeCart(data)
+    },
+    useHook:
+        ({ useData }) =>
+        (input) => {
+            const response = useData({
+                swrOptions: { revalidateOnFocus: false, ...input?.swrOptions },
+            })
+
+            return useMemo(
+                () =>
+                    Object.create(response, {
+                        isEmpty: {
+                            get() {
+                                return (
+                                    (response.data?.lineItems.length ?? 0) <= 0
+                                )
+                            },
+                            enumerable: true,
+                        },
+                    }),
+                [response]
+            )
+        },
 }
 ```
 
@@ -190,51 +192,52 @@ import { CommerceError } from '@commerce/utils/errors'
 import useAddItem, { UseAddItem } from '@commerce/cart/use-add-item'
 import { normalizeCart } from '../lib/normalize'
 import type {
-  Cart,
-  BigcommerceCart,
-  CartItemBody,
-  AddCartItemBody,
+    Cart,
+    BigcommerceCart,
+    CartItemBody,
+    AddCartItemBody,
 } from '../types'
 import useCart from './use-cart'
 
 export default useAddItem as UseAddItem<typeof handler>
 
 export const handler: MutationHook<Cart, {}, CartItemBody> = {
-  fetchOptions: {
-    url: '/api/cart',
-    method: 'POST',
-  },
-  async fetcher({ input: item, options, fetch }) {
-    if (
-      item.quantity &&
-      (!Number.isInteger(item.quantity) || item.quantity! < 1)
-    ) {
-      throw new CommerceError({
-        message: 'The item quantity has to be a valid integer greater than 0',
-      })
-    }
-
-    const data = await fetch<BigcommerceCart, AddCartItemBody>({
-      ...options,
-      body: { item },
-    })
-
-    return normalizeCart(data)
-  },
-  useHook:
-    ({ fetch }) =>
-    () => {
-      const { mutate } = useCart()
-
-      return useCallback(
-        async function addItem(input) {
-          const data = await fetch({ input })
-          await mutate(data, false)
-          return data
-        },
-        [fetch, mutate]
-      )
+    fetchOptions: {
+        url: '/api/cart',
+        method: 'POST',
     },
+    async fetcher({ input: item, options, fetch }) {
+        if (
+            item.quantity &&
+            (!Number.isInteger(item.quantity) || item.quantity! < 1)
+        ) {
+            throw new CommerceError({
+                message:
+                    'The item quantity has to be a valid integer greater than 0',
+            })
+        }
+
+        const data = await fetch<BigcommerceCart, AddCartItemBody>({
+            ...options,
+            body: { item },
+        })
+
+        return normalizeCart(data)
+    },
+    useHook:
+        ({ fetch }) =>
+        () => {
+            const { mutate } = useCart()
+
+            return useCallback(
+                async function addItem(input) {
+                    const data = await fetch({ input })
+                    await mutate(data, false)
+                    return data
+                },
+                [fetch, mutate]
+            )
+        },
 }
 ```
 

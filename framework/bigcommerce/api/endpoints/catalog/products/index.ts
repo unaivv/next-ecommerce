@@ -11,8 +11,8 @@ export type ProductsEndpoint = ProductsAPI['endpoint']
 export const handlers: ProductsEndpoint['handlers'] = { getProducts }
 
 const productsApi = createEndpoint<ProductsAPI>({
-  handler: productsEndpoint,
-  handlers,
+    handler: productsEndpoint,
+    handlers,
 })
 
 export default productsApi

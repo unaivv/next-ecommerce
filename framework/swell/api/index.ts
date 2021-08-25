@@ -1,12 +1,12 @@
 import {
-  CommerceAPI,
-  CommerceAPIConfig,
-  getCommerceApi as commerceApi,
+    CommerceAPI,
+    CommerceAPIConfig,
+    getCommerceApi as commerceApi,
 } from '@commerce/api'
 import {
-  SWELL_CHECKOUT_ID_COOKIE,
-  SWELL_CUSTOMER_TOKEN_COOKIE,
-  SWELL_COOKIE_EXPIRE,
+    SWELL_CHECKOUT_ID_COOKIE,
+    SWELL_CUSTOMER_TOKEN_COOKIE,
+    SWELL_COOKIE_EXPIRE,
 } from '../const'
 
 import fetchApi from './utils/fetch-swell-api'
@@ -19,27 +19,27 @@ import getAllProducts from './operations/get-all-products'
 import getProduct from './operations/get-product'
 
 export interface SwellConfig extends CommerceAPIConfig {
-  fetch: any
+    fetch: any
 }
 
 const config: SwellConfig = {
-  locale: 'en-US',
-  commerceUrl: '',
-  apiToken: ''!,
-  cartCookie: SWELL_CHECKOUT_ID_COOKIE,
-  cartCookieMaxAge: SWELL_COOKIE_EXPIRE,
-  fetch: fetchApi,
-  customerCookie: SWELL_CUSTOMER_TOKEN_COOKIE,
+    locale: 'en-US',
+    commerceUrl: '',
+    apiToken: ''!,
+    cartCookie: SWELL_CHECKOUT_ID_COOKIE,
+    cartCookieMaxAge: SWELL_COOKIE_EXPIRE,
+    fetch: fetchApi,
+    customerCookie: SWELL_CUSTOMER_TOKEN_COOKIE,
 }
 
 const operations = {
-  login,
-  getAllPages,
-  getPage,
-  getSiteInfo,
-  getAllProductPaths,
-  getAllProducts,
-  getProduct,
+    login,
+    getAllPages,
+    getPage,
+    getSiteInfo,
+    getAllProductPaths,
+    getAllProducts,
+    getProduct,
 }
 
 export const provider = { config, operations }
@@ -47,7 +47,7 @@ export const provider = { config, operations }
 export type Provider = typeof provider
 
 export function getCommerceApi<P extends Provider>(
-  customProvider: P = provider as any
+    customProvider: P = provider as any
 ): CommerceAPI<P> {
-  return commerceApi(customProvider)
+    return commerceApi(customProvider)
 }

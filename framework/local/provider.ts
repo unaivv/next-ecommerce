@@ -11,11 +11,11 @@ import { handler as useSignup } from './auth/use-signup'
 
 export type Provider = typeof localProvider
 export const localProvider = {
-  locale: 'en-us',
-  cartCookie: 'session',
-  fetcher: fetcher,
-  cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },
-  customer: { useCustomer },
-  products: { useSearch },
-  auth: { useLogin, useLogout, useSignup },
+    locale: 'en-us',
+    cartCookie: 'session',
+    fetcher: fetcher,
+    cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },
+    customer: { useCustomer },
+    products: { useSearch },
+    auth: { useLogin, useLogout, useSignup },
 }

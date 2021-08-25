@@ -11,8 +11,8 @@ export type SignupEndpoint = SignupAPI['endpoint']
 export const handlers: SignupEndpoint['handlers'] = { signup }
 
 const singupApi = createEndpoint<SignupAPI>({
-  handler: signupEndpoint,
-  handlers,
+    handler: signupEndpoint,
+    handlers,
 })
 
 export default singupApi

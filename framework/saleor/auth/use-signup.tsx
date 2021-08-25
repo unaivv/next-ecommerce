@@ -12,45 +12,45 @@ import { SignupHook } from '@commerce/types/signup'
 export default useSignup as UseSignup<typeof handler>
 
 export const handler: MutationHook<SignupHook> = {
-  fetchOptions: {
-    query: mutation.AccountCreate,
-  },
-  async fetcher({ input: { email, password }, options, fetch }) {
-    if (!(email && password)) {
-      throw new CommerceError({
-        message: 'A first name, last name, email and password are required to signup',
-      })
-    }
-
-    const { customerCreate } = await fetch<Mutation, MutationAccountRegisterArgs>({
-      ...options,
-      variables: {
-        input: {
-          email,
-          password,
-          redirectUrl: 'https://localhost.com',
-          channel: 'default-channel'
-        },
-      },
-    })
-
-    throwUserErrors(customerCreate?.errors)
-    await handleAutomaticLogin(fetch, { email, password })
-
-    return null
-  },
-  useHook:
-    ({ fetch }) =>
-    () => {
-      const { revalidate } = useCustomer()
-
-      return useCallback(
-        async function signup(input) {
-          const data = await fetch({ input })
-          await revalidate()
-          return data
-        },
-        [fetch, revalidate]
-      )
+    fetchOptions: {
+        query: mutation.AccountCreate,
     },
+    async fetcher({ input: { email, password }, options, fetch }) {
+        if (!(email && password)) {
+            throw new CommerceError({
+                message: 'A first name, last name, email and password are required to signup',
+            })
+        }
+
+        const { customerCreate } = await fetch<Mutation, MutationAccountRegisterArgs>({
+            ...options,
+            variables: {
+                input: {
+                    email,
+                    password,
+                    redirectUrl: 'https://localhost.com',
+                    channel: 'default-channel',
+                },
+            },
+        })
+
+        throwUserErrors(customerCreate?.errors)
+        await handleAutomaticLogin(fetch, { email, password })
+
+        return null
+    },
+    useHook:
+        ({ fetch }) =>
+        () => {
+            const { revalidate } = useCustomer()
+
+            return useCallback(
+                async function signup(input) {
+                    const data = await fetch({ input })
+                    await revalidate()
+                    return data
+                },
+                [fetch, revalidate]
+            )
+        },
 }

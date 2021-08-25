@@ -11,8 +11,8 @@ export type LoginEndpoint = LoginAPI['endpoint']
 export const handlers: LoginEndpoint['handlers'] = { login }
 
 const loginApi = createEndpoint<LoginAPI>({
-  handler: loginEndpoint,
-  handlers,
+    handler: loginEndpoint,
+    handlers,
 })
 
 export default loginApi

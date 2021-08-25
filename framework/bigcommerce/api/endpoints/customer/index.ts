@@ -11,8 +11,8 @@ export type CustomerEndpoint = CustomerAPI['endpoint']
 export const handlers: CustomerEndpoint['handlers'] = { getLoggedInCustomer }
 
 const customerApi = createEndpoint<CustomerAPI>({
-  handler: customerEndpoint,
-  handlers,
+    handler: customerEndpoint,
+    handlers,
 })
 
 export default customerApi

@@ -2,30 +2,30 @@ import getSortVariables from './get-sort-variables'
 import { SearchProductsBody } from '../types/product'
 
 export const getSearchVariables = ({
-  brandId,
-  search,
-  categoryId,
-  sort,
-  locale,
-}: SearchProductsBody) => {
-  let query = ''
-
-  if (search) {
-    query += `product_type:${search} OR title:${search} OR tag:${search} `
-  }
-
-  if (brandId) {
-    query += `${search ? 'AND ' : ''}vendor:${brandId}`
-  }
-
-  return {
+    brandId,
+    search,
     categoryId,
-    query,
-    ...getSortVariables(sort, !!categoryId),
-    ...(locale && {
-      locale,
-    }),
-  }
+    sort,
+    locale,
+}: SearchProductsBody) => {
+    let query = ''
+
+    if (search) {
+        query += `product_type:${search} OR title:${search} OR tag:${search} `
+    }
+
+    if (brandId) {
+        query += `${search ? 'AND ' : ''}vendor:${brandId}`
+    }
+
+    return {
+        categoryId,
+        query,
+        ...getSortVariables(sort, !!categoryId),
+        ...(locale && {
+            locale,
+        }),
+    }
 }
 
 export default getSearchVariables

@@ -5,7 +5,7 @@ import type { AddItemHook } from '../types/wishlist'
 import type { Provider } from '..'
 
 export type UseAddItem<
-  H extends MutationHook<AddItemHook<any>> = MutationHook<AddItemHook>
+    H extends MutationHook<AddItemHook<any>> = MutationHook<AddItemHook>
 > = ReturnType<H['useHook']>
 
 export const fetcher = mutationFetcher
@@ -13,8 +13,8 @@ export const fetcher = mutationFetcher
 const fn = (provider: Provider) => provider.wishlist?.useAddItem!
 
 const useAddItem: UseAddItem = (...args) => {
-  const hook = useHook(fn)
-  return useMutationHook({ fetcher, ...hook })(...args)
+    const hook = useHook(fn)
+    return useMutationHook({ fetcher, ...hook })(...args)
 }
 
 export default useAddItem

@@ -11,8 +11,8 @@ export type LogoutEndpoint = LogoutAPI['endpoint']
 export const handlers: LogoutEndpoint['handlers'] = { logout }
 
 const logoutApi = createEndpoint<LogoutAPI>({
-  handler: logoutEndpoint,
-  handlers,
+    handler: logoutEndpoint,
+    handlers,
 })
 
 export default logoutApi
